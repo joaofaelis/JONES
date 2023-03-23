@@ -9,7 +9,7 @@ class LoginService:
     async def insert_email(cls, email) -> NoReturn:
         validate = validate_email(email)
         typedict: LoginModel = {
-            "email": f'{validate}'
+            "email": f'{validate[1]}'
         }
         await Repository.insert_address_info(typedict)
-        return
+        return typedict
