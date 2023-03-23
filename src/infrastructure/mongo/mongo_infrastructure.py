@@ -4,13 +4,13 @@ from pymongo.collection import Collection
 
 class MongoInfrastructure:
 
-    __connection: dict()
+    __connection = dict()
 
     @staticmethod
     def __create_client() -> MongoClient:
         host = config("MONGO_HOST")
         client = MongoClient(host=host)
-        return
+        return client
 
     @classmethod
     def __create_connection(cls, collection_name: str) -> Collection:
@@ -23,7 +23,7 @@ class MongoInfrastructure:
     @classmethod
     def get_collection(cls, collection_name: str) -> Collection:
         if collection_name not in cls.__connection:
-            collection = cls.__create_client(collection_name=collection_name)
+            collection = cls.__create_connection(collection_name=collection_name)
             cls.__connection[collection_name] = collection
 
         return cls.__connection[collection_name]
