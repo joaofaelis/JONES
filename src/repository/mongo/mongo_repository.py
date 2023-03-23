@@ -10,7 +10,7 @@ class Repository:
     @classmethod
     async def insert_address_info(cls, email: LoginModel) -> NoReturn:
         conection = MongoInfrastructure.get_collection(cls.__collection_name)
-        insert = conection.insert_one(email)
+        insert = conection.insert_one(email.copy())
         return
 
 
