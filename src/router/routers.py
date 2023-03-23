@@ -6,5 +6,5 @@ API = APIRouter()
 
 @API.post("/")
 async def insertion_email(email):
-        insert = LoginService.insert_email(email)
+        insert = await LoginService.insert_email(email)
         return insert
